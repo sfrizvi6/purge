@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "505785360486",
+    "firebase_url": "https://purge-334c5.firebaseio.com",
+    "project_id": "purge-334c5",
+    "storage_bucket": "purge-334c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505785360486:android:7b99cdb8214795e4",
+        "android_client_info": {
+          "package_name": "com.example.purge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505785360486-isj11td1s3tdofeg314dakba68tjn68p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcorolCmsVh7Su12VEgfA03vQcYmkWIA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505785360486-isj11td1s3tdofeg314dakba68tjn68p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
