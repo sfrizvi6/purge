@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">purge</string>
+    <string name="app_name">Purge</string>
     <string name="welcome_text">Welcome!</string>
+    <string name="lets_start_purging_text">Let\'s start purging…</string>
     <string name="scan_item_button_title">Scan Item</string>
     <string name="close">Close</string>
 

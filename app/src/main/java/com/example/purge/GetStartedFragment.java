@@ -89,7 +89,7 @@ public class GetStartedFragment extends Fragment {
 
         // TODO: to obtain captured image
 //        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ghose_barcode);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.the_only_woman_in_the_room);
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
 
 //        initializeTextRecognition(image);

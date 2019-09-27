@@ -14,6 +14,7 @@
             android:id="@+id/product_image"
             android:layout_width="@dimen/spacing_416"
             android:layout_height="@dimen/spacing_416"
+            android:layout_marginTop="@dimen/spacing_32"
             android:contentDescription="@string/product_image_content_description"
             app:layout_constraintBottom_toTopOf="@id/product_name"
             app:layout_constraintEnd_toEndOf="parent"
