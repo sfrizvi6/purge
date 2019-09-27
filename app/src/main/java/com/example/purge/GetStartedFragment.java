@@ -89,7 +89,7 @@ public class GetStartedFragment extends Fragment {
 
         // TODO: to obtain captured image
 //        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.facing_codependence);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ghose_barcode);
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
 
 //        initializeTextRecognition(image);
@@ -162,11 +162,12 @@ public class GetStartedFragment extends Fragment {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        String productName = "N/A";
+                        String productName = "";
                         String imageUrl = null;
                         try {
                             JSONObject product = (JSONObject) response.getJSONArray("products").get(0);
                             productName = product.getString("product_name");
+                            productName = TextUtils.isEmpty(productName) ? product.getString("title") : productName;
                             imageUrl = (String) product.getJSONArray("images").get(0);
                         } catch (JSONException e) {
                             Log.d(TAG, "Error encountered parsing product information JSON");

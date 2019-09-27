@@ -35,7 +35,7 @@ public class PreviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Bundle arguments = getArguments();
 
-        if (arguments == null || arguments.getString("productName") == null) {
+        if (arguments == null || arguments.getString("productName") == null || arguments.getString("productImageUrl") == null) {
             return;
         }
         String productName = arguments.getString("productName");

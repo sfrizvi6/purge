@@ -10,4 +10,7 @@
     <dimen name="spacing_48">48dp</dimen>
     <dimen name="spacing_56">56dp</dimen>
     <dimen name="spacing_256">256dp</dimen>
+
+    <!--    textSize-->
+    <dimen name="close_button_text_size">16sp</dimen>
 </resources>

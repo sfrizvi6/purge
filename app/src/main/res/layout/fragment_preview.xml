@@ -22,9 +22,13 @@
 
         <TextView
             android:id="@+id/product_name"
-            android:layout_width="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/spacing_32"
+            android:layout_marginEnd="@dimen/spacing_32"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@id/close_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/product_image"
@@ -32,10 +36,11 @@
 
         <Button
             android:id="@+id/close_button"
+            style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_16"
             android:text="@string/close"
+            android:textSize="@dimen/close_button_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
