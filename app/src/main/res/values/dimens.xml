@@ -15,5 +15,6 @@
     <dimen name="spacing_512">512dp</dimen>
 
     <!--    textSize-->
+    <dimen name="welcome_button_text_size">16sp</dimen>
     <dimen name="close_button_text_size">16sp</dimen>
 </resources>
