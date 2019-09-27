@@ -27,6 +27,7 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -88,7 +89,7 @@ public class GetStartedFragment extends Fragment {
 
         // TODO: to obtain captured image
 //        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.raisin_nut_bran_bar_code);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.facing_codependence);
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
 
 //        initializeTextRecognition(image);
@@ -102,13 +103,13 @@ public class GetStartedFragment extends Fragment {
                     @Override
                     public void onSuccess(FirebaseVisionText firebaseVisionText) {
                         Log.i("Text read", firebaseVisionText.getText());
-                        navigateToPreviewFragment(firebaseVisionText.getText());
+                        navigateToPreviewFragment(firebaseVisionText.getText(), null);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        navigateToPreviewFragment("Failed to read text " + e.getLocalizedMessage());
+                        navigateToPreviewFragment("Failed to read text " + e.getLocalizedMessage(), null);
                     }
                 });
     }
@@ -120,7 +121,7 @@ public class GetStartedFragment extends Fragment {
                     @Override
                     public void onSuccess(@Nullable List<FirebaseVisionBarcode> firebaseVisionBarcodes) {
                         if (firebaseVisionBarcodes == null || firebaseVisionBarcodes.size() <= 0 || TextUtils.isEmpty(firebaseVisionBarcodes.get(0).getDisplayValue())) {
-                            navigateToPreviewFragment("Empty barcode received");
+                            navigateToPreviewFragment("Empty barcode received", null);
                             return;
                         }
                         Log.i("Barcode read", firebaseVisionBarcodes.get(0).getDisplayValue());
@@ -130,19 +131,20 @@ public class GetStartedFragment extends Fragment {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        navigateToPreviewFragment("Failed to scan barcode " + e.getLocalizedMessage());
+                        navigateToPreviewFragment("Failed to scan barcode " + e.getLocalizedMessage(), null);
                     }
                 });
     }
 
-    private void navigateToPreviewFragment(String text) {
+    private void navigateToPreviewFragment(@NonNull String text, @Nullable String imageUrl) {
         if (getActivity() == null || getActivity().getSupportFragmentManager() == null) {
             return;
         }
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         PreviewFragment previewFragment = new PreviewFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("text", text);
+        bundle.putString("productName", text);
+        bundle.putString("productImageUrl", imageUrl);
         previewFragment.setArguments(bundle);
         fragmentTransaction.add(R.id.main_activity_container, previewFragment, PreviewFragment.TAG);
         fragmentTransaction.addToBackStack(PreviewFragment.TAG);
@@ -160,14 +162,23 @@ public class GetStartedFragment extends Fragment {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        navigateToPreviewFragment("blue sky");
+                        String productName = "N/A";
+                        String imageUrl = null;
+                        try {
+                            JSONObject product = (JSONObject) response.getJSONArray("products").get(0);
+                            productName = product.getString("product_name");
+                            imageUrl = (String) product.getJSONArray("images").get(0);
+                        } catch (JSONException e) {
+                            Log.d(TAG, "Error encountered parsing product information JSON");
+                        }
+                        navigateToPreviewFragment(productName, imageUrl);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // TODO: Handle error
-                        navigateToPreviewFragment("barcode look up fail blooopers");
+                        navigateToPreviewFragment("barcode look up fail blooopers", null);
                     }
                 });
 

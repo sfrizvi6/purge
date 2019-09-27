@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.purge.databinding.FragmentPreviewBinding;
 
 import androidx.annotation.NonNull;
@@ -34,10 +35,16 @@ public class PreviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Bundle arguments = getArguments();
 
-        if (arguments == null || arguments.getString("text") == null) {
+        if (arguments == null || arguments.getString("productName") == null) {
             return;
         }
-        binding.previewText.setText(arguments.getString("text"));
+        String productName = arguments.getString("productName");
+        String productImageUrl = arguments.getString("productImageUrl");
+        binding.productName.setText(productName);
+
+        Glide.with(getContext())
+                .load(productImageUrl)
+                .into(binding.productImage);
 
         binding.closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
