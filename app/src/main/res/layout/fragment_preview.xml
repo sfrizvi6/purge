@@ -26,6 +26,7 @@
             style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
             android:layout_marginStart="@dimen/spacing_32"
             android:layout_marginEnd="@dimen/spacing_32"
             android:gravity="center"
