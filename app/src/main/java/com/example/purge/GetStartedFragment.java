@@ -88,8 +88,8 @@ public class GetStartedFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         // TODO: to obtain captured image
-//        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.the_only_woman_in_the_room);
+        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.the_only_woman_in_the_room);
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
 
 //        initializeTextRecognition(image);
@@ -121,7 +121,7 @@ public class GetStartedFragment extends Fragment {
                     @Override
                     public void onSuccess(@Nullable List<FirebaseVisionBarcode> firebaseVisionBarcodes) {
                         if (firebaseVisionBarcodes == null || firebaseVisionBarcodes.size() <= 0 || TextUtils.isEmpty(firebaseVisionBarcodes.get(0).getDisplayValue())) {
-                            navigateToPreviewFragment("Empty barcode received", null);
+                            navigateToPreviewFragment("Oops empty barcode received", null);
                             return;
                         }
                         Log.i("Barcode read", firebaseVisionBarcodes.get(0).getDisplayValue());
@@ -179,7 +179,7 @@ public class GetStartedFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // TODO: Handle error
-                        navigateToPreviewFragment("barcode look up fail blooopers", null);
+                        navigateToPreviewFragment("Oops barcode look up fail", null);
                     }
                 });
 
