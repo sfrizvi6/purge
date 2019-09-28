@@ -2,6 +2,7 @@ package com.example.purge;
 
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,16 +36,20 @@ public class PreviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Bundle arguments = getArguments();
 
-        if (arguments == null || arguments.getString("productName") == null || arguments.getString("productImageUrl") == null) {
+        if (arguments == null || arguments.getString("productName") == null) {
             return;
         }
         String productName = arguments.getString("productName");
         String productImageUrl = arguments.getString("productImageUrl");
         binding.productName.setText(productName);
 
-        Glide.with(getContext())
-                .load(productImageUrl)
-                .into(binding.productImage);
+        if (!TextUtils.isEmpty(productImageUrl)) {
+            Glide.with(getContext())
+                    .load(productImageUrl)
+                    .into(binding.productImage);
+        } else {
+            binding.productImage.setImageResource(R.drawable.oops);
+        }
 
         binding.closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
